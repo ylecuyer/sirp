@@ -116,6 +116,10 @@ module SIRP
       # Calculate the 'M' matcher
       @M = calc_M(@A, @B, @K, hash)
 
+      if client_M.length.odd?
+        client_M = '0' + client_M
+      end
+
       # Secure constant time comparison, hash the params to ensure
       # that both strings being compared are equal length 32 Byte strings.
       if secure_compare(Digest::SHA256.hexdigest(@M), Digest::SHA256.hexdigest(client_M))
