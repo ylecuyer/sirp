@@ -6,6 +6,9 @@ module SIRP
   # @param str [String] a string to convert
   # @return [Array<Integer>] an Array of Integer bytes
   def hex_to_bytes(str)
+    if str.length.odd?
+      str = '0' + str
+    end
     [str].pack('H*').unpack('C*')
   end
 
